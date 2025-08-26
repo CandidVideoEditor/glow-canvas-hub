@@ -1,7 +1,9 @@
-import { useState, useRef } from 'react';
-import { Upload, Download, FileText, Image, Video, File, Trash2, Eye } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Upload, FileText, Image, Video, File, Trash2, Eye, Shield, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface ProjectFile {
   id: string;
@@ -9,7 +11,7 @@ interface ProjectFile {
   type: 'pptx' | 'pdf' | 'video' | 'image' | 'other';
   size: string;
   uploadDate: string;
-  downloadUrl?: string;
+  isVerified: boolean;
 }
 
 const sampleFiles: ProjectFile[] = [
@@ -19,7 +21,7 @@ const sampleFiles: ProjectFile[] = [
     type: 'pptx',
     size: '12.3 MB',
     uploadDate: '2024-01-15',
-    downloadUrl: '/sample-files/color-grading.pptx'
+    isVerified: true
   },
   {
     id: '2',
@@ -27,7 +29,7 @@ const sampleFiles: ProjectFile[] = [
     type: 'pdf',
     size: '8.7 MB',
     uploadDate: '2024-01-14',
-    downloadUrl: '/sample-files/workflow-guide.pdf'
+    isVerified: true
   },
   {
     id: '3',
@@ -35,7 +37,7 @@ const sampleFiles: ProjectFile[] = [
     type: 'pptx',
     size: '25.1 MB',
     uploadDate: '2024-01-13',
-    downloadUrl: '/sample-files/motion-graphics.pptx'
+    isVerified: true
   },
   {
     id: '4',
@@ -43,7 +45,7 @@ const sampleFiles: ProjectFile[] = [
     type: 'pdf',
     size: '15.2 MB',
     uploadDate: '2024-01-12',
-    downloadUrl: '/sample-files/audio-mixing.pdf'
+    isVerified: true
   },
   {
     id: '5',
@@ -51,7 +53,7 @@ const sampleFiles: ProjectFile[] = [
     type: 'pptx',
     size: '45.8 MB',
     uploadDate: '2024-01-11',
-    downloadUrl: '/sample-files/ae-templates.pptx'
+    isVerified: true
   },
   {
     id: '6',
@@ -59,7 +61,7 @@ const sampleFiles: ProjectFile[] = [
     type: 'pdf',
     size: '22.4 MB',
     uploadDate: '2024-01-10',
-    downloadUrl: '/sample-files/lighting-guide.pdf'
+    isVerified: true
   }
 ];
 
@@ -81,11 +83,50 @@ const getFileIcon = (type: string) => {
 export const ProjectsPage = () => {
   const [files, setFiles] = useState<ProjectFile[]>(sampleFiles);
   const [dragOver, setDragOver] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
+  const [pendingFiles, setPendingFiles] = useState<FileList | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Disable right-click context menu, text selection, and screenshots
+  useEffect(() => {
+    const disableRightClick = (e: MouseEvent) => e.preventDefault();
+    const disableTextSelection = (e: Event) => e.preventDefault();
+    const disableKeyShortcuts = (e: KeyboardEvent) => {
+      // Disable common screenshot and copy shortcuts
+      if (
+        e.key === 'PrintScreen' ||
+        (e.ctrlKey && (e.key === 'c' || e.key === 'a' || e.key === 's')) ||
+        (e.metaKey && (e.key === 'c' || e.key === 'a' || e.key === 's'))
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', disableRightClick);
+    document.addEventListener('selectstart', disableTextSelection);
+    document.addEventListener('keydown', disableKeyShortcuts);
+
+    return () => {
+      document.removeEventListener('contextmenu', disableRightClick);
+      document.removeEventListener('selectstart', disableTextSelection);
+      document.removeEventListener('keydown', disableKeyShortcuts);
+    };
+  }, []);
 
   const handleFileUpload = (uploadedFiles: FileList | null) => {
     if (uploadedFiles) {
-      const newFiles: ProjectFile[] = Array.from(uploadedFiles).map((file, index) => ({
+      setPendingFiles(uploadedFiles);
+      setShowVerification(true);
+      // Simulate sending verification code to email
+      console.log('Verification code sent to teamaestheticeditors@gmail.com');
+    }
+  };
+
+  const handleVerification = () => {
+    // Simple verification - in real app, this would verify against server
+    if (verificationCode === '123456' && pendingFiles) {
+      const newFiles: ProjectFile[] = Array.from(pendingFiles).map((file, index) => ({
         id: String(Date.now() + index),
         name: file.name,
         type: file.name.endsWith('.pptx') ? 'pptx' : 
@@ -93,10 +134,16 @@ export const ProjectsPage = () => {
               file.type.startsWith('video/') ? 'video' :
               file.type.startsWith('image/') ? 'image' : 'other',
         size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-        uploadDate: new Date().toISOString().split('T')[0]
+        uploadDate: new Date().toISOString().split('T')[0],
+        isVerified: true
       }));
       
       setFiles([...newFiles, ...files]);
+      setShowVerification(false);
+      setVerificationCode('');
+      setPendingFiles(null);
+    } else {
+      alert('Invalid verification code');
     }
   };
 
@@ -120,18 +167,22 @@ export const ProjectsPage = () => {
     setFiles(files.filter(file => file.id !== fileId));
   };
 
-  const handleDownload = (file: ProjectFile) => {
-    if (file.downloadUrl) {
-      // In a real app, this would trigger an actual download
-      console.log('Downloading:', file.name);
+  const handlePreview = (file: ProjectFile) => {
+    if (file.isVerified) {
+      console.log('Opening preview for:', file.name);
+      // In a real app, this would open the file preview
     } else {
-      console.log('File uploaded by user - download not available for demo');
+      alert('File not verified for preview');
     }
   };
 
   return (
-    <div className="py-6">
-      <h2 className="text-2xl font-bold text-foreground mb-6 animate-slide-in-up">Project Files & Resources</h2>
+    <div className="py-6 select-none" style={{ userSelect: 'none', WebkitUserSelect: 'none' }}>
+      <div className="flex items-center space-x-3 mb-6">
+        <Shield className="h-6 w-6 text-accent" />
+        <h2 className="text-2xl font-bold text-foreground animate-slide-in-up">Secure Project Files & Resources</h2>
+        <Lock className="h-5 w-5 text-muted-foreground" />
+      </div>
       
       {/* Upload Area */}
       <Card 
@@ -148,10 +199,10 @@ export const ProjectsPage = () => {
         <div className="text-center">
           <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
           <p className="text-lg font-semibold text-foreground mb-2">
-            Upload Project Files
+            Upload Project Files (Verification Required)
           </p>
           <p className="text-muted-foreground mb-4">
-            Drag and drop your PPTX, PDF, or other project files here, or click to browse
+            Drag and drop your PPTX, PDF, or other project files here. A verification code will be sent to teamaestheticeditors@gmail.com
           </p>
           <Button variant="outline" className="hover:bg-accent hover:text-accent-foreground">
             Choose Files
@@ -198,22 +249,20 @@ export const ProjectsPage = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => handleDownload(file)}
+                  onClick={() => handlePreview(file)}
                   className="hover:bg-accent/20 hover:text-accent transition-all duration-300"
-                  disabled={!file.downloadUrl}
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Download
-                </Button>
-                
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="hover:bg-accent/20 hover:text-accent transition-all duration-300"
+                  disabled={!file.isVerified}
                 >
                   <Eye className="h-4 w-4 mr-2" />
-                  Preview
+                  {file.isVerified ? 'Preview' : 'Locked'}
                 </Button>
+                
+                {file.isVerified && (
+                  <div className="flex items-center space-x-1 text-xs text-green-500">
+                    <Shield className="h-3 w-3" />
+                    <span>Verified</span>
+                  </div>
+                )}
               </div>
 
               <Button
@@ -236,6 +285,53 @@ export const ProjectsPage = () => {
           <p className="text-sm text-muted-foreground">Upload your first project file to get started</p>
         </div>
       )}
+
+      {/* Verification Dialog */}
+      <Dialog open={showVerification} onOpenChange={setShowVerification}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <Shield className="h-5 w-5 text-accent" />
+              <span>File Upload Verification</span>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              A verification code has been sent to <strong>teamaestheticeditors@gmail.com</strong>. 
+              Please enter the code to complete the upload.
+            </p>
+            <Input
+              type="text"
+              placeholder="Enter verification code"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+              className="text-center tracking-widest"
+            />
+            <div className="flex space-x-2">
+              <Button
+                onClick={handleVerification}
+                className="flex-1"
+                disabled={!verificationCode}
+              >
+                Verify & Upload
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowVerification(false);
+                  setVerificationCode('');
+                  setPendingFiles(null);
+                }}
+              >
+                Cancel
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground text-center">
+              Demo code: 123456
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

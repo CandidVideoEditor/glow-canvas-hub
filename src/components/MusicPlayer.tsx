@@ -40,12 +40,30 @@ export const MusicPlayer = ({ className }: MusicPlayerProps) => {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        // Note: In a real app, you'd have actual audio files
-        // For demo purposes, we'll just simulate playback
-        audioRef.current.play().catch(() => {
-          // Fallback for when audio files don't exist
-          console.log('Playing:', currentSong.title);
-        });
+        // Create audio context for better browser support
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log('Playing:', currentSong.title);
+          }).catch(() => {
+            // If no actual audio file, create a simple beep sound
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A note
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+            
+            console.log('Playing simulation for:', currentSong.title);
+          });
+        }
       }
       setIsPlaying(!isPlaying);
     }
