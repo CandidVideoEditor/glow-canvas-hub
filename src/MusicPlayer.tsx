@@ -1,4 +1,3 @@
-// src/MusicPlayer.js
 import { useState, useEffect, useRef } from 'react';
 
 const songs = [
