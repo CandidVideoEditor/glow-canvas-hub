@@ -1,4 +1,4 @@
-// src/main.js
+// src/main.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MusicPlayer from './MusicPlayer';
