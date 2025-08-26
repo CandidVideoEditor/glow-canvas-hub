@@ -28,12 +28,7 @@ export const Banner = () => {
       
       {/* Content Overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-glow mb-4 animate-slide-in-up">
-            AESTHETIC EDITORS
-          </h1>
-          <p className="text-lg md:text-xl text-foreground/90 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-            Creating Visual Magic
+        
           </p>
         </div>
       </div>
