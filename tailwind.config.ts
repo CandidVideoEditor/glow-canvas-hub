@@ -70,25 +70,51 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'gradient-shift': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { boxShadow: '0 0 20px hsla(260, 85%, 60%, 0.3)' },
+					'50%': { boxShadow: '0 0 40px hsla(260, 85%, 60%, 0.5)' }
+				},
+				'flip-number': {
+					'0%': { transform: 'rotateX(0deg)' },
+					'50%': { transform: 'rotateX(-90deg)' },
+					'100%': { transform: 'rotateX(0deg)' }
+				},
+				'slide-in-up': {
+					from: { opacity: '0', transform: 'translateY(30px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'music-bars': {
+					'0%, 100%': { height: '4px' },
+					'25%': { height: '12px' },
+					'50%': { height: '8px' },
+					'75%': { height: '16px' }
+				},
+				'float-dots': {
+					'0%, 100%': { transform: 'translateY(0px) translateX(0px)', opacity: '0.3' },
+					'33%': { transform: 'translateY(-20px) translateX(10px)', opacity: '0.6' },
+					'66%': { transform: 'translateY(-10px) translateX(-10px)', opacity: '0.4' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'gradient-shift': 'gradient-shift 8s ease infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'flip-number': 'flip-number 0.3s ease-in-out',
+				'slide-in-up': 'slide-in-up 0.6s ease-out',
+				'music-bars': 'music-bars 1s ease-in-out infinite',
+				'float-dots': 'float-dots 6s ease-in-out infinite'
 			}
 		}
 	},
