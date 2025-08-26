@@ -1,6 +1,17 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+// src/main.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MusicPlayer from './MusicPlayer';
+import './index.css'; // Assuming you're using Tailwind CSS
 
-createRoot(document.getElementById("root")!).render(<App />);
+function App() {
+  return (
+    <div>
+      <h1>Welcome to My Website</h1>
+      {/* Other content */}
+      <MusicPlayer />
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
