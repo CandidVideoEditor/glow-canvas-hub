@@ -9,7 +9,7 @@ interface Song {
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const songsDir = path.join(process.cwd(), "public/songs");
+  const songsDir = path.join(process.cwd(), "public", "Songs");
 
   try {
     const files = fs.readdirSync(songsDir);
@@ -18,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       .map((file, index) => ({
         id: `${index + 1}`,
         title: file.replace(/\.(mp3|wav|ogg)$/i, ""),
-        url: `/songs/${file}`,
+        url: `/Songs/${file}`,
       }));
 
     res.status(200).json(songs);
