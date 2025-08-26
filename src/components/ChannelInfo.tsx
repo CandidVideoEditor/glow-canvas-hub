@@ -20,7 +20,7 @@ export const ChannelInfo = () => {
         {/* Channel Details */}
         <div className="text-center sm:text-left">
           <h2 className="text-2xl font-bold text-foreground mb-1">AESTHETIC EDITORS</h2>
-          <p className="text-muted-foreground mb-2">@aesthetic.editors • 1.43k subscribers</p>
+          <p className="text-muted-foreground mb-2">@aesthetic.editors • 1.2M subscribers</p>
           <p className="text-sm text-foreground/80 mb-3 max-w-md">
             Professional video editing tutorials, effects, and creative content. 
             Transform your videos into cinematic masterpieces.
@@ -66,7 +66,7 @@ export const ChannelInfo = () => {
 
           {/* Subscribe Button */}
           <a
-            href="https://www.youtube.com/@aesthetic.editors?sub_confirmation=1"
+            href="https://www.youtube.com/@aesthetic.editors"
             target="_blank"
             rel="noopener noreferrer"
           >
