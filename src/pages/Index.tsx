@@ -8,6 +8,7 @@ import { VideosPage } from '@/components/pages/VideosPage';
 import { ShortsPage } from '@/components/pages/ShortsPage';
 import { PlaylistsPage } from '@/components/pages/PlaylistsPage';
 import { PostsPage } from '@/components/pages/PostsPage';
+import { SongsPage } from '@/components/pages/SongsPage';
 import { ProjectsPage } from '@/components/pages/ProjectsPage';
 
 const Index = () => {
@@ -25,6 +26,8 @@ const Index = () => {
         return <PlaylistsPage />;
       case 'posts':
         return <PostsPage />;
+      case 'songs':
+        return <SongsPage />;
       case 'projects':
         return <ProjectsPage />;
       default:

@@ -15,6 +15,7 @@ const tabs = [
   { id: 'shorts', label: 'Shorts' },
   { id: 'playlists', label: 'Playlists' },
   { id: 'posts', label: 'Posts' },
+  { id: 'songs', label: 'Songs' },
   { id: 'projects', label: 'Projects' },
 ];
 

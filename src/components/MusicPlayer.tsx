@@ -11,13 +11,13 @@ interface Song {
 }
 
 const sampleSongs: Song[] = [
-  { id: '1', title: 'Kannada Hit Song', language: 'Kannada', url: '/sample-music/kannada.mp3' },
-  { id: '2', title: 'Hindi Melody', language: 'Hindi', url: '/sample-music/hindi.mp3' },
-  { id: '3', title: 'Telugu Beat', language: 'Telugu', url: '/sample-music/telugu.mp3' },
-  { id: '4', title: 'Tamil Classic', language: 'Tamil', url: '/sample-music/tamil.mp3' },
-  { id: '5', title: 'Marathi Folk', language: 'Marathi', url: '/sample-music/marathi.mp3' },
-  { id: '6', title: 'Malayalam Devotional', language: 'Malayalam', url: '/sample-music/malayalam.mp3' },
-  { id: '7', title: 'English Pop', language: 'English', url: '/sample-music/english.mp3' },
+  { id: '1', title: 'Baarisu Kannada Dimpu Dimpu', language: 'Kannada', url: '' },
+  { id: '2', title: 'Tum Hi Aana', language: 'Hindi', url: '' },
+  { id: '3', title: 'Samajavaragamana', language: 'Telugu', url: '' },
+  { id: '4', title: 'Kannum Kannum Kollaiyadithaal', language: 'Tamil', url: '' },
+  { id: '5', title: 'Gulabi Sadi', language: 'Marathi', url: '' },
+  { id: '6', title: 'Pranayini Ninakkai', language: 'Malayalam', url: '' },
+  { id: '7', title: 'Perfect', language: 'English', url: '' },
 ];
 
 interface MusicPlayerProps {
@@ -36,36 +36,45 @@ export const MusicPlayer = ({ className }: MusicPlayerProps) => {
   const playerRef = useRef<HTMLDivElement>(null);
 
   const handlePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        // Create audio context for better browser support
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            console.log('Playing:', currentSong.title);
-          }).catch(() => {
-            // If no actual audio file, create a simple beep sound
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A note
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.5);
-            
-            console.log('Playing simulation for:', currentSong.title);
-          });
-        }
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      setIsPlaying(false);
+    } else {
+      // Create audio context to generate actual sound
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      // Different frequencies for different songs to simulate variety
+      const frequencies: Record<string, number> = {
+        '1': 523, // C5 - Kannada
+        '2': 587, // D5 - Hindi  
+        '3': 659, // E5 - Telugu
+        '4': 698, // F5 - Tamil
+        '5': 784, // G5 - Marathi
+        '6': 880, // A5 - Malayalam
+        '7': 988, // B5 - English
+      };
+      
+      const frequency = frequencies[currentSong.id] || 440;
+      
+      oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 2);
+      
+      setIsPlaying(true);
+      
+      // Auto stop after 2 seconds
+      setTimeout(() => {
+        setIsPlaying(false);
+      }, 2000);
+      
+      console.log('Playing:', currentSong.title);
     }
   };
 
