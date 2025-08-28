@@ -17,10 +17,7 @@ export const Banner = () => {
       />
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 gradient-animated opacity-60" />
-      
-      {/* Removed Glow Effect */}
-      <div className="absolute inset-0" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10" />
       
       {/* Content Overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
