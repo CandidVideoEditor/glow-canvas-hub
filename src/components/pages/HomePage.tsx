@@ -1,6 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
 import { Play, Clock, Eye, ThumbsUp } from 'lucide-react';
+import { ScrollingImageSection } from '@/components/ScrollingImageSection';
 
 interface Video {
   id: string;
@@ -178,9 +179,57 @@ const blogPosts: { [key: string]: BlogPost[] } = {
   ]
 };
 
+// Sample image URLs for scrolling sections
+const weddingImages = [
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192", 
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192"
+];
+
+const preweddingImages = [
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192", 
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192"
+];
+
+const festivalImages = [
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192", 
+  "/api/placeholder/320/192",
+  "/api/placeholder/320/192"
+];
+
 export const HomePage = () => {
   return (
     <div className="py-6 space-y-12">
+      {/* Scrolling Image Sections */}
+      <ScrollingImageSection 
+        title="Wedding Photography" 
+        images={weddingImages} 
+        speed={30} 
+        direction="left" 
+      />
+      <ScrollingImageSection 
+        title="Pre-Wedding Shoots" 
+        images={preweddingImages} 
+        speed={25} 
+        direction="right" 
+      />
+      <ScrollingImageSection 
+        title="State Level Festivals" 
+        images={festivalImages} 
+        speed={35} 
+        direction="left" 
+      />
+
       {/* Playlists Section */}
       {samplePlaylists.map((playlist, playlistIndex) => (
         <div key={playlist.id} className="animate-slide-in-up" style={{ animationDelay: `${playlistIndex * 0.1}s` }}>

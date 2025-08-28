@@ -26,7 +26,15 @@ export function SongsPage() {
         {songs.map((song) => (
           <div key={song.id} className="flex items-center justify-between border border-border/50 p-4 rounded-lg bg-card/20 backdrop-blur-sm hover:bg-card/30 transition-colors">
             <p className="font-medium truncate text-foreground">{song.title}</p>
-            <Button variant="ghost" size="icon" onClick={() => new Audio(song.url).play()} className="text-primary hover:text-primary/80">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => {
+                const audio = new Audio(song.url);
+                audio.play().catch(console.error);
+              }} 
+              className="text-primary hover:text-primary/80"
+            >
               <Play className="w-4 h-4" />
             </Button>
           </div>
