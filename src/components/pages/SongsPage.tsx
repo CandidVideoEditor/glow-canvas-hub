@@ -10,14 +10,13 @@ interface Song {
   url: string;
 }
 
-export default function SongsPage() {
+export function SongsPage() {
   const [songs, setSongs] = useState<Song[]>([]);
 
   useEffect(() => {
-    fetch("/api/songs")
-      .then((res) => res.json())
-      .then(setSongs)
-      .catch(console.error);
+    import("../../lib/songs").then(({ getSongs }) => {
+      getSongs().then(setSongs).catch(console.error);
+    });
   }, []);
 
   return (

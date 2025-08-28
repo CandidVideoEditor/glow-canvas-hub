@@ -1,10 +1,10 @@
-import MusicPlayer from "./MusicPlayer";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
 
-function App() {
-  return (
-    <div>
-      <h1>Welcome to Glow Canvas Hub</h1>
-      <MusicPlayer />
-    </div>
-  );
-}
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
