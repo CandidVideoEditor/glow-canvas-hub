@@ -23,15 +23,20 @@ export function ScrollingImageSection({
 
     let animationId: number;
     let scrollPosition = 0;
-    const maxScroll = scrollElement.scrollWidth / 2;
+    const itemWidth = 192 + 12; // 48 * 4 (w-48 = 192px) + 12px gap
+    const totalWidth = images.length * itemWidth;
 
     const animate = () => {
-      scrollPosition += direction === "left" ? speed / 60 : -speed / 60;
-      
-      if (scrollPosition >= maxScroll) {
-        scrollPosition = 0;
-      } else if (scrollPosition <= 0) {
-        scrollPosition = maxScroll;
+      if (direction === "left") {
+        scrollPosition += speed / 60;
+        if (scrollPosition >= totalWidth) {
+          scrollPosition = 0;
+        }
+      } else {
+        scrollPosition -= speed / 60;
+        if (scrollPosition <= -totalWidth) {
+          scrollPosition = 0;
+        }
       }
       
       scrollElement.scrollLeft = scrollPosition;
@@ -45,22 +50,21 @@ export function ScrollingImageSection({
         cancelAnimationFrame(animationId);
       }
     };
-  }, [speed, direction]);
+  }, [speed, direction, images.length]);
 
   return (
     <div className="w-full py-4">
       <div 
         ref={scrollRef}
-        className="flex overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:hidden"
+        className="flex overflow-x-hidden [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        
         {/* First set of images */}
-        <div className="flex gap-3 animate-none">
+        <div className="flex gap-3 flex-shrink-0">
           {images.map((image, index) => (
             <div
               key={`first-${index}`}
-              className="flex-shrink-0 w-48 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
+              className="w-48 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={image}
@@ -76,11 +80,11 @@ export function ScrollingImageSection({
         </div>
         
         {/* Duplicate set for seamless loop */}
-        <div className="flex gap-3 animate-none">
+        <div className="flex gap-3 flex-shrink-0">
           {images.map((image, index) => (
             <div
               key={`second-${index}`}
-              className="flex-shrink-0 w-48 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
+              className="w-48 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={image}
