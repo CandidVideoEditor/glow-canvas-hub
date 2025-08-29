@@ -425,12 +425,16 @@ const blogPosts: { [key: string]: BlogPost[] } = {
 
 // Sample image URLs for scrolling sections
 const weddingImages = [
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192", 
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192"
+  "/lovable-uploads/bdce9e31-ab38-499c-90af-bf7066abb058.png",
+  "/lovable-uploads/160eac40-47ff-44f8-9bfc-f37cafb2ea82.png",
+  "/lovable-uploads/01e7262b-abe0-4a2f-a6e2-d9f8d226405a.png",
+  "/lovable-uploads/8adfac0a-1627-471f-87c4-c2d45bc8c6db.png",
+  "/lovable-uploads/c1e5393a-29d7-4c04-8d4b-52663a1d8391.png",
+  "/lovable-uploads/f9ec857d-eb5e-4d79-8a4f-e0bf91190df5.png",
+  "/lovable-uploads/89b04b2e-f9d0-47a6-952d-e3f14a5c9d56.png",
+  "/lovable-uploads/c44f4ab6-d61c-4882-869a-82e749b1f67a.png",
+  "/lovable-uploads/6fe78a3d-344d-469f-aff3-7d4585b600f7.png",
+  "/lovable-uploads/37136bf8-20c0-497c-a958-110fe6313637.png"
 ];
 
 const preweddingImages = [
