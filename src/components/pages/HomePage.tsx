@@ -211,24 +211,26 @@ export const HomePage = () => {
   return (
     <div className="py-6 space-y-12">
       {/* Scrolling Image Sections */}
-      <ScrollingImageSection 
-        title="Wedding Photography" 
-        images={weddingImages} 
-        speed={30} 
-        direction="left" 
-      />
-      <ScrollingImageSection 
-        title="Pre-Wedding Shoots" 
-        images={preweddingImages} 
-        speed={25} 
-        direction="right" 
-      />
-      <ScrollingImageSection 
-        title="State Level Festivals" 
-        images={festivalImages} 
-        speed={35} 
-        direction="left" 
-      />
+      <div className="space-y-4">
+        <ScrollingImageSection 
+          title="" 
+          images={weddingImages} 
+          speed={40} 
+          direction="left" 
+        />
+        <ScrollingImageSection 
+          title="" 
+          images={preweddingImages} 
+          speed={45} 
+          direction="right" 
+        />
+        <ScrollingImageSection 
+          title="" 
+          images={festivalImages} 
+          speed={50} 
+          direction="left" 
+        />
+      </div>
 
       {/* Playlists Section */}
       {samplePlaylists.map((playlist, playlistIndex) => (

@@ -193,21 +193,61 @@ const mockSongs: Song[] = [
   },
   {
     id: "38",
+    title: "CHUMMA - Vicky Vidya",
+    url: "/Songs/CHUMMA _ Vicky Vidya Ka Woh Wala Video _ Rajkummar R_ Triptii D_ Pawan Singh _ Sachin-Jigar_ Vayu(MP3_160K).mp3"
+  },
+  {
+    id: "39",
+    title: "Choli Ke Peeche - Crew",
+    url: "/Songs/Choli Ke Peeche _ Crew - Kareena Kapoor K_ _diljitdosanjh_ Ila Arun_ Alka Yagnik_ Akshay _ IP(MP3_160K).mp3"
+  },
+  {
+    id: "40",
+    title: "Chura Liya Hai Tumne - Jhankar",
+    url: "/Songs/Chura Liya Hai Tumne - Jhankar Beats _ Sattar Baloch _ Aishwarya Satish Pandit _ R.D. Burman(MP3_160K).mp3"
+  },
+  {
+    id: "41",
+    title: "Coke Studio - Pasoori",
+    url: "/Songs/Coke Studio _ Season 14 _ Pasoori _ Ali Sethi x Shae Gill(MP3_160K).mp3"
+  },
+  {
+    id: "42",
+    title: "Daavudi - Devara",
+    url: "/Songs/Daavudi - दावूदी Video Song _ Devara _ NTR _ Janhvi Kapoor _ Koratala Siva _ Anirudh _ 27th Sep(MP3_160K).mp3"
+  },
+  {
+    id: "43",
+    title: "Dash Song - Suthradaari",
+    url: "/Songs/Dash Song _ Suthradaari Movie _ Chandan Shetty _ Navarasan _ Sanjana Anand _ Apurva _ Kiran Kumar(MP3_160K).mp3"
+  },
+  {
+    id: "44",
+    title: "Dax - Man I Used To Be",
+    url: "/Songs/Dax - _Man I Used To Be_ (Official Music Video)(MP3_160K).mp3"
+  },
+  {
+    id: "45",
+    title: "Dekhha Tenu - Mr. Mrs. Mahi",
+    url: "/Songs/Dekhha Tenu _ Mr. _ Mrs. Mahi _ Rajkummar Rao_ Janhvi Kapoor _ Mohd. Faiz _ Jaani _ Aadesh S_ Sameer(MP3_160K).mp3"
+  },
+  {
+    id: "46",
     title: "Yeh Kahani Hai Un Doston Ki",
     url: "/Songs/Yeh kahani hai un doston ki,.mp3"
   },
   {
-    id: "39",
+    id: "47",
     title: "AGAR TUM SAATH HO - Tamasha",
     url: "/Songs/_AGAR TUM SAATH HO_ Full VIDEO song _ Tamasha _ Ranbir Kapoor_ Deepika Padukone _ T-Series(MP3_160K).mp3"
   },
   {
-    id: "40",
+    id: "48",
     title: "AMBER - Arabic Oriental Beat",
     url: "/Songs/_AMBER_ _ Arabic Oriental Dancehall Type Beat _ Turkish Reggaeton Oriental Balkan Instrumental(MP3_160K).mp3"
   },
   {
-    id: "41",
+    id: "49",
     title: "Energetic Remix Jukebox",
     url: "/Songs/_Energetic Remix_ _ Video Jukebox _ _Latest Remix Songs_ _ T-Series(MP3_160K) (1).mp3"
   }

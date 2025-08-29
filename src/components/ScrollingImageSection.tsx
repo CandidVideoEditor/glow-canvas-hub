@@ -48,8 +48,7 @@ export function ScrollingImageSection({
   }, [speed, direction]);
 
   return (
-    <div className="w-full py-8">
-      <h2 className="text-2xl font-bold text-foreground mb-6 text-center">{title}</h2>
+    <div className="w-full py-4">
       <div 
         ref={scrollRef}
         className="flex overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:hidden"
@@ -57,19 +56,19 @@ export function ScrollingImageSection({
       >
         
         {/* First set of images */}
-        <div className="flex gap-6 animate-none">
+        <div className="flex gap-3 animate-none">
           {images.map((image, index) => (
             <div
               key={`first-${index}`}
-              className="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
+              className="flex-shrink-0 w-48 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={image}
-                alt={`${title} image ${index + 1}`}
+                alt={`Image ${index + 1}`}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = `https://via.placeholder.com/320x192/6366f1/white?text=${title.replace(/\s+/g, '+')}+${index + 1}`;
+                  target.src = `https://via.placeholder.com/192x128/6366f1/white?text=Image+${index + 1}`;
                 }}
               />
             </div>
@@ -77,19 +76,19 @@ export function ScrollingImageSection({
         </div>
         
         {/* Duplicate set for seamless loop */}
-        <div className="flex gap-6 animate-none">
+        <div className="flex gap-3 animate-none">
           {images.map((image, index) => (
             <div
               key={`second-${index}`}
-              className="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
+              className="flex-shrink-0 w-48 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={image}
-                alt={`${title} image ${index + 1}`}
+                alt={`Image ${index + 1}`}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = `https://via.placeholder.com/320x192/6366f1/white?text=${title.replace(/\s+/g, '+')}+${index + 1}`;
+                  target.src = `https://via.placeholder.com/192x128/6366f1/white?text=Image+${index + 1}`;
                 }}
               />
             </div>

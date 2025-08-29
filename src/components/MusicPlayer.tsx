@@ -33,7 +33,10 @@ export function MusicPlayer() {
       // Add event listeners for smooth playback
       audioRef.current.addEventListener('loadstart', () => setIsLoading(true));
       audioRef.current.addEventListener('canplay', () => setIsLoading(false));
-      audioRef.current.addEventListener('ended', nextSong);
+      audioRef.current.addEventListener('ended', () => {
+        nextSong();
+        setIsPlaying(true); // Auto-play next song
+      });
       audioRef.current.addEventListener('error', (e) => {
         console.error('Audio error:', e);
         setIsLoading(false);
@@ -86,7 +89,15 @@ export function MusicPlayer() {
 
   const nextSong = () => {
     if (songs.length === 0) return;
-    setCurrentSongIndex((prev) => (prev + 1) % songs.length);
+    const nextIndex = (currentSongIndex + 1) % songs.length;
+    setCurrentSongIndex(nextIndex);
+    
+    // Auto-play next song after a brief delay
+    setTimeout(() => {
+      if (audioRef.current && songs[nextIndex]) {
+        audioRef.current.play().catch(console.error);
+      }
+    }, 100);
   };
 
   const prevSong = () => {
