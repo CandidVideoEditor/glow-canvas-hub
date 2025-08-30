@@ -2,6 +2,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
 import { Play, Clock, Eye, ThumbsUp } from 'lucide-react';
 import { ScrollingImageSection } from '@/components/ScrollingImageSection';
+import { useEffect, useState } from 'react';
 
 interface Video {
   id: string;
@@ -10,6 +11,7 @@ interface Video {
   duration: string;
   views: string;
   likes: string;
+  videoUrl?: string;
 }
 
 interface Playlist {
@@ -109,10 +111,11 @@ const sampleVideos: Video[] = [
   {
     id: 'v1',
     title: 'Wedding Cinematography Highlights Reel',
-    thumbnail: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/RpxAKrwL9XI/maxresdefault.jpg',
     duration: '3:45',
     views: '125K',
-    likes: '8.2K'
+    likes: '8.2K',
+    videoUrl: 'https://youtu.be/RpxAKrwL9XI?si=xxqOKcTJn0hzNA4e'
   },
   {
     id: 'v2',
@@ -434,28 +437,60 @@ const weddingImages = [
   "/lovable-uploads/89b04b2e-f9d0-47a6-952d-e3f14a5c9d56.png",
   "/lovable-uploads/c44f4ab6-d61c-4882-869a-82e749b1f67a.png",
   "/lovable-uploads/6fe78a3d-344d-469f-aff3-7d4585b600f7.png",
-  "/lovable-uploads/37136bf8-20c0-497c-a958-110fe6313637.png"
+  "/lovable-uploads/37136bf8-20c0-497c-a958-110fe6313637.png",
+  "/lovable-uploads/pexels-956048109-30716833.jpg",
+  "/lovable-uploads/pexels-anoop1992-7669964.jpg",
+  "/lovable-uploads/pexels-anoop1992-7694299.jpg",
+  "/lovable-uploads/pexels-arifsyd15-5191864.jpg",
+  "/lovable-uploads/pexels-arifsyd15-5404066.jpg",
+  "/lovable-uploads/pexels-caleboquendo-3051569.jpg"
 ];
 
 const preweddingImages = [
   "/lovable-uploads/bc6ad7b1-9f52-4c5f-9690-3b99ca89bc9e.png",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192"
+  "/lovable-uploads/pexels-camera-treasure-928922-12163549.jpg",
+  "/lovable-uploads/pexels-camera-treasure-928922-14916247.jpg",
+  "/lovable-uploads/pexels-coppertist-wu-313365563-15967469.jpg",
+  "/lovable-uploads/pexels-coppertist-wu-313365563-15979629.jpg",
+  "/lovable-uploads/pexels-coppertist-wu-313365563-16137861.jpg",
+  "/lovable-uploads/pexels-fred-souza-245702210-12599618.jpg",
+  "/lovable-uploads/pexels-hashan-madhuranga-179199-24974609.jpg",
+  "/lovable-uploads/pexels-john-classen-144978367-14950242.jpg",
+  "/lovable-uploads/pexels-ravi-roshan-2875998-30770346.jpg",
+  "/lovable-uploads/pexels-sinu-sony-877597188-20768279.jpg",
+  "/lovable-uploads/pexels-thrissurkaranphotography-12865908.jpg"
 ];
 
 const festivalImages = [
   "/lovable-uploads/683f72c7-9633-4368-a06e-c93ef963b02f.png",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192", 
-  "/api/placeholder/320/192",
-  "/api/placeholder/320/192"
+  "/lovable-uploads/pexels-vireshstudio-18016511.jpg",
+  "/lovable-uploads/pexels-vivek-dabi-42707589-32297479.jpg",
+  "/lovable-uploads/pexels-vvs-440853-12217206.jpg",
+  "/lovable-uploads/pexels-vvs-440853-13037597.jpg",
+  "/lovable-uploads/AE-ajay-donga-1113836-2174662.jpg",
+  "/lovable-uploads/AE-alex-fanaso-2153283068-32656682.jpg",
+  "/lovable-uploads/AE-alexander-mass-748453803-33647893.jpg",
+  "/lovable-uploads/AE-alexander-mass-748453803-33647900.jpg",
+  "/lovable-uploads/AE-alexander-mass-748453803-33647901.jpg",
+  "/lovable-uploads/AE-alexander-mass-748453803-33647910.jpg",
+  "/lovable-uploads/AE-aneesh-s-1798935-3370598.jpg",
+  "/lovable-uploads/AE-anna-frolova-1453685099-26741250.jpg"
 ];
 
 export const HomePage = () => {
+  const [refreshKey, setRefreshKey] = useState(0);
+  
+  // Auto-update every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRefreshKey(prev => prev + 1);
+      // Force refresh of components
+      window.location.reload();
+    }, 30000); // 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="py-6 space-y-12">
       {/* Scrolling Image Sections */}
@@ -488,6 +523,7 @@ export const HomePage = () => {
             <Card 
               key={video.id}
               className="overflow-hidden bg-card hover:bg-accent/5 transition-all duration-300 hover:scale-105 group cursor-pointer"
+              onClick={() => video.videoUrl && window.open(video.videoUrl, '_blank')}
             >
               {/* Video Thumbnail */}
               <div className="relative aspect-video bg-gradient-to-br from-accent/20 to-primary/20 overflow-hidden">
