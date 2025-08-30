@@ -438,9 +438,9 @@ const weddingImages = [
 ];
 
 const preweddingImages = [
+  "/lovable-uploads/bc6ad7b1-9f52-4c5f-9690-3b99ca89bc9e.png",
   "/api/placeholder/320/192",
   "/api/placeholder/320/192",
-  "/api/placeholder/320/192", 
   "/api/placeholder/320/192",
   "/api/placeholder/320/192",
   "/api/placeholder/320/192"
