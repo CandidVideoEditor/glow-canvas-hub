@@ -23,17 +23,17 @@ export function ScrollingImageSection({
 
     let animationId: number;
     let scrollPosition = 0;
-    const itemWidth = 64 + 4; // w-16 = 64px + 4px gap
+    const itemWidth = 128 + 6; // w-32 = 128px + 6px gap
     const totalWidth = images.length * itemWidth;
 
     const animate = () => {
       if (direction === "left") {
-        scrollPosition += speed / 20;
+        scrollPosition += speed / 60; // Slower, smoother animation
         if (scrollPosition >= totalWidth) {
           scrollPosition = 0;
         }
       } else {
-        scrollPosition -= speed / 20;
+        scrollPosition -= speed / 60; // Slower, smoother animation
         if (scrollPosition <= -totalWidth) {
           scrollPosition = 0;
         }
@@ -53,18 +53,18 @@ export function ScrollingImageSection({
   }, [speed, direction, images.length]);
 
   return (
-    <div className="w-full py-0">
+    <div className="w-full py-1">
       <div 
         ref={scrollRef}
         className="flex overflow-x-hidden [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {/* Single set of unique images - no duplicates within loop */}
-        <div className="flex gap-1 flex-shrink-0">
+        <div className="flex gap-1.5 flex-shrink-0">
           {images.map((image, index) => (
             <div
               key={`unique-${index}`}
-              className="w-16 h-10 bg-gradient-to-br from-primary/20 to-accent/20 rounded-sm overflow-hidden shadow-sm hover:scale-105 transition-transform duration-300"
+              className="w-32 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-500"
             >
               <img
                 src={image}
@@ -72,7 +72,7 @@ export function ScrollingImageSection({
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = `https://via.placeholder.com/64x40/6366f1/white?text=${index + 1}`;
+                  target.src = `https://via.placeholder.com/128x80/6366f1/white?text=${index + 1}`;
                 }}
               />
             </div>
@@ -80,11 +80,11 @@ export function ScrollingImageSection({
         </div>
         
         {/* Duplicate set for seamless loop - appears after first set ends */}
-        <div className="flex gap-1 flex-shrink-0">
+        <div className="flex gap-1.5 flex-shrink-0">
           {images.map((image, index) => (
             <div
               key={`loop-${index}`}
-              className="w-16 h-10 bg-gradient-to-br from-primary/20 to-accent/20 rounded-sm overflow-hidden shadow-sm hover:scale-105 transition-transform duration-300"
+              className="w-32 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-500"
             >
               <img
                 src={image}
@@ -92,7 +92,7 @@ export function ScrollingImageSection({
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = `https://via.placeholder.com/64x40/6366f1/white?text=${index + 1}`;
+                  target.src = `https://via.placeholder.com/128x80/6366f1/white?text=${index + 1}`;
                 }}
               />
             </div>

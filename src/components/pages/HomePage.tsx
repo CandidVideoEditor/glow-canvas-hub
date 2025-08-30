@@ -120,66 +120,74 @@ const sampleVideos: Video[] = [
   {
     id: 'v2',
     title: 'Pre-Wedding Romantic Shoot Behind Scenes',
-    thumbnail: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/Dv22ntR71V8/maxresdefault.jpg',
     duration: '5:12',
     views: '89K',
-    likes: '6.1K'
+    likes: '6.1K',
+    videoUrl: 'https://youtu.be/Dv22ntR71V8?si=ZH6uSb429x8xRbIN'
   },
   {
     id: 'v3',
     title: 'Traditional Festival Color Grading Tutorial',
-    thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/0uZh6J9iWoU/maxresdefault.jpg',
     duration: '8:30',
     views: '156K',
-    likes: '12.3K'
+    likes: '12.3K',
+    videoUrl: 'https://youtu.be/0uZh6J9iWoU?si=qtLsw131uABVI4Kz'
   },
   {
     id: 'v4',
     title: 'DaVinci Resolve Advanced Workflow',
-    thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/xrCaVrxKXGY/maxresdefault.jpg',
     duration: '15:22',
     views: '203K',
-    likes: '15.7K'
+    likes: '15.7K',
+    videoUrl: 'https://youtu.be/xrCaVrxKXGY?si=9cyu2WKOygeFx6je'
   },
   {
     id: 'v5',
     title: 'Cinematic Drone Shots Compilation',
-    thumbnail: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/ivSPikCv7q4/maxresdefault.jpg',
     duration: '4:18',
     views: '78K',
-    likes: '5.4K'
+    likes: '5.4K',
+    videoUrl: 'https://youtu.be/ivSPikCv7q4?si=Ye6X8TklfRTeA0-h'
   },
   {
     id: 'v6',
     title: 'Music Video Production Breakdown',
-    thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/YUdAeTEGoOs/maxresdefault.jpg',
     duration: '6:45',
     views: '134K',
-    likes: '9.8K'
+    likes: '9.8K',
+    videoUrl: 'https://youtu.be/YUdAeTEGoOs?si=2iqPikK_mjmGu4ua'
   },
   {
     id: 'v7',
     title: 'Portrait Photography Lighting Setup',
-    thumbnail: 'https://images.unsplash.com/photo-1554048612-b6a482b55fe2?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/pZNKiM35A54/maxresdefault.jpg',
     duration: '7:33',
     views: '92K',
-    likes: '7.2K'
+    likes: '7.2K',
+    videoUrl: 'https://youtu.be/pZNKiM35A54?si=1747mlQ4W5vXMoAE'
   },
   {
     id: 'v8',
     title: 'Film Festival Documentary Preview',
-    thumbnail: 'https://images.unsplash.com/photo-1489599273715-0a93b14f0e1a?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/cvcdy_nDiss/maxresdefault.jpg',
     duration: '12:15',
     views: '167K',
-    likes: '13.5K'
+    likes: '13.5K',
+    videoUrl: 'https://youtu.be/cvcdy_nDiss?si=tqubidRRJutT-w6_'
   },
   {
     id: 'v9',
     title: 'Adobe Premiere Pro Quick Tips',
-    thumbnail: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=225&fit=crop',
+    thumbnail: 'https://img.youtube.com/vi/YUkIclpM_XM/maxresdefault.jpg',
     duration: '3:28',
     views: '245K',
-    likes: '18.9K'
+    likes: '18.9K',
+    videoUrl: 'https://youtu.be/YUkIclpM_XM?si=NF3dRduCg3QL0qq8'
   },
   {
     id: 'v10',
@@ -498,19 +506,19 @@ export const HomePage = () => {
         <ScrollingImageSection 
           title="" 
           images={weddingImages} 
-          speed={80} 
+          speed={30} 
           direction="left" 
         />
         <ScrollingImageSection 
           title="" 
           images={preweddingImages} 
-          speed={90} 
+          speed={35} 
           direction="right" 
         />
         <ScrollingImageSection 
           title="" 
           images={festivalImages} 
-          speed={100}
+          speed={40}
           direction="left" 
         />
       </div>
