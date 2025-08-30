@@ -447,7 +447,7 @@ const preweddingImages = [
 ];
 
 const festivalImages = [
-  "/api/placeholder/320/192",
+  "/lovable-uploads/683f72c7-9633-4368-a06e-c93ef963b02f.png",
   "/api/placeholder/320/192",
   "/api/placeholder/320/192",
   "/api/placeholder/320/192", 
