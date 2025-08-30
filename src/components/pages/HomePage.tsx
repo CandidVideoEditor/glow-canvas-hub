@@ -459,23 +459,23 @@ export const HomePage = () => {
   return (
     <div className="py-6 space-y-12">
       {/* Scrolling Image Sections */}
-      <div className="space-y-4">
+      <div className="space-y-0">
         <ScrollingImageSection 
           title="" 
           images={weddingImages} 
-          speed={40} 
+          speed={80} 
           direction="left" 
         />
         <ScrollingImageSection 
           title="" 
           images={preweddingImages} 
-          speed={45} 
+          speed={90} 
           direction="right" 
         />
         <ScrollingImageSection 
           title="" 
           images={festivalImages} 
-          speed={50} 
+          speed={100}
           direction="left" 
         />
       </div>
