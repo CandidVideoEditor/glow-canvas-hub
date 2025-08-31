@@ -23,17 +23,17 @@ export function ScrollingImageSection({
 
     let animationId: number;
     let scrollPosition = 0;
-    const itemWidth = 128 + 6; // w-32 = 128px + 6px gap
+    const itemWidth = 256 + 6; // w-64 = 256px + 6px gap
     const totalWidth = images.length * itemWidth;
 
     const animate = () => {
       if (direction === "left") {
-        scrollPosition += speed / 60; // Slower, smoother animation
+        scrollPosition += speed / 120; // Even slower, smoother animation
         if (scrollPosition >= totalWidth) {
           scrollPosition = 0;
         }
       } else {
-        scrollPosition -= speed / 60; // Slower, smoother animation
+        scrollPosition -= speed / 120; // Even slower, smoother animation
         if (scrollPosition <= -totalWidth) {
           scrollPosition = 0;
         }
@@ -64,7 +64,7 @@ export function ScrollingImageSection({
           {images.map((image, index) => (
             <div
               key={`unique-${index}`}
-              className="w-32 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-500"
+              className="w-64 h-40 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-500"
             >
               <img
                 src={image}
@@ -72,7 +72,7 @@ export function ScrollingImageSection({
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = `https://via.placeholder.com/128x80/6366f1/white?text=${index + 1}`;
+                  target.src = `https://via.placeholder.com/256x160/6366f1/white?text=${index + 1}`;
                 }}
               />
             </div>
@@ -84,7 +84,7 @@ export function ScrollingImageSection({
           {images.map((image, index) => (
             <div
               key={`loop-${index}`}
-              className="w-32 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-500"
+              className="w-64 h-40 bg-gradient-to-br from-primary/20 to-accent/20 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-500"
             >
               <img
                 src={image}
@@ -92,7 +92,7 @@ export function ScrollingImageSection({
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = `https://via.placeholder.com/128x80/6366f1/white?text=${index + 1}`;
+                  target.src = `https://via.placeholder.com/256x160/6366f1/white?text=${index + 1}`;
                 }}
               />
             </div>
