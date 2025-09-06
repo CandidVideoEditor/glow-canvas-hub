@@ -488,16 +488,7 @@ const festivalImages = [
 export const HomePage = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   
-  // Auto-update every 30 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRefreshKey(prev => prev + 1);
-      // Force refresh of components
-      window.location.reload();
-    }, 30000); // 30 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  // Removed auto-refresh for better performance
 
   return (
     <div className="py-6 space-y-12">

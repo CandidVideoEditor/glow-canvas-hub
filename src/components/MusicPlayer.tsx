@@ -37,10 +37,10 @@ export function MusicPlayer() {
         nextSong();
         setIsPlaying(true); // Auto-play next song
       });
-      audioRef.current.addEventListener('error', (e) => {
-        console.error('Audio error:', e);
+      audioRef.current.addEventListener('error', () => {
         setIsLoading(false);
         setIsPlaying(false);
+        // Silently handle audio errors
       });
     }
 
@@ -63,8 +63,7 @@ export function MusicPlayer() {
     audioRef.current.load();
     
     if (isPlaying) {
-      audioRef.current.play().catch((error) => {
-        console.error('Play error:', error);
+      audioRef.current.play().catch(() => {
         setIsPlaying(false);
         setIsLoading(false);
       });
@@ -80,8 +79,7 @@ export function MusicPlayer() {
     } else {
       audioRef.current.play().then(() => {
         setIsPlaying(true);
-      }).catch((error) => {
-        console.error('Play error:', error);
+      }).catch(() => {
         setIsPlaying(false);
       });
     }
@@ -95,7 +93,7 @@ export function MusicPlayer() {
     // Auto-play next song after a brief delay
     setTimeout(() => {
       if (audioRef.current && songs[nextIndex]) {
-        audioRef.current.play().catch(console.error);
+        audioRef.current.play().catch(() => {});
       }
     }, 100);
   };
