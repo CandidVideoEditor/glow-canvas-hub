@@ -106,11 +106,11 @@ const samplePlaylists: Playlist[] = [
   }
 ];
 
-// Sample videos for grid display
+// Featured videos with actual YouTube titles
 const sampleVideos: Video[] = [
   {
     id: 'v1',
-    title: 'Wedding Cinematography Highlights Reel',
+    title: 'Punjabi Wedding Cinematography | Best Moments',
     thumbnail: 'https://img.youtube.com/vi/RpxAKrwL9XI/maxresdefault.jpg',
     duration: '3:45',
     views: '125K',
@@ -119,7 +119,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v2',
-    title: 'Pre-Wedding Romantic Shoot Behind Scenes',
+    title: 'Pre Wedding Shoot Behind The Scenes | Romantic Story',
     thumbnail: 'https://img.youtube.com/vi/Dv22ntR71V8/maxresdefault.jpg',
     duration: '5:12',
     views: '89K',
@@ -128,7 +128,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v3',
-    title: 'Traditional Festival Color Grading Tutorial',
+    title: 'Festival Colors | Cinematic Color Grading Tutorial',
     thumbnail: 'https://img.youtube.com/vi/0uZh6J9iWoU/maxresdefault.jpg',
     duration: '8:30',
     views: '156K',
@@ -137,7 +137,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v4',
-    title: 'DaVinci Resolve Advanced Workflow',
+    title: 'DaVinci Resolve Complete Workflow Guide',
     thumbnail: 'https://img.youtube.com/vi/xrCaVrxKXGY/maxresdefault.jpg',
     duration: '15:22',
     views: '203K',
@@ -146,7 +146,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v5',
-    title: 'Cinematic Drone Shots Compilation',
+    title: 'Epic Drone Cinematography | Aerial Shots Collection',
     thumbnail: 'https://img.youtube.com/vi/ivSPikCv7q4/maxresdefault.jpg',
     duration: '4:18',
     views: '78K',
@@ -155,7 +155,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v6',
-    title: 'Music Video Production Breakdown',
+    title: 'Music Video Production | Behind The Scenes',
     thumbnail: 'https://img.youtube.com/vi/YUdAeTEGoOs/maxresdefault.jpg',
     duration: '6:45',
     views: '134K',
@@ -164,7 +164,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v7',
-    title: 'Portrait Photography Lighting Setup',
+    title: 'Professional Portrait Photography Lighting Techniques',
     thumbnail: 'https://img.youtube.com/vi/pZNKiM35A54/maxresdefault.jpg',
     duration: '7:33',
     views: '92K',
@@ -173,7 +173,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v8',
-    title: 'Film Festival Documentary Preview',
+    title: 'Documentary Film Festival | Award Winning Short',
     thumbnail: 'https://img.youtube.com/vi/cvcdy_nDiss/maxresdefault.jpg',
     duration: '12:15',
     views: '167K',
@@ -182,7 +182,7 @@ const sampleVideos: Video[] = [
   },
   {
     id: 'v9',
-    title: 'Adobe Premiere Pro Quick Tips',
+    title: 'Adobe Premiere Pro Quick Tips & Tricks',
     thumbnail: 'https://img.youtube.com/vi/YUkIclpM_XM/maxresdefault.jpg',
     duration: '3:28',
     views: '245K',
@@ -497,19 +497,19 @@ export const HomePage = () => {
         <ScrollingImageSection 
           title="" 
           images={weddingImages} 
-          speed={30} 
+          speed={60} 
           direction="left" 
         />
         <ScrollingImageSection 
           title="" 
           images={preweddingImages} 
-          speed={35} 
+          speed={80} 
           direction="right" 
         />
         <ScrollingImageSection 
           title="" 
           images={festivalImages} 
-          speed={40}
+          speed={100}
           direction="left" 
         />
       </div>
@@ -547,20 +547,10 @@ export const HomePage = () => {
               </div>
               
               {/* Video Info */}
-              <div className="p-3">
-                <h3 className="font-medium text-foreground group-hover:text-accent transition-colors duration-300 line-clamp-2 mb-2 text-sm">
+              <div className="p-2">
+                <h3 className="font-medium text-foreground group-hover:text-accent transition-colors duration-300 line-clamp-2 text-xs">
                   {video.title}
                 </h3>
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <div className="flex items-center space-x-1">
-                    <Eye className="h-3 w-3" />
-                    <span>{video.views}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <ThumbsUp className="h-3 w-3" />
-                    <span>{video.likes}</span>
-                  </div>
-                </div>
               </div>
             </Card>
           ))}
