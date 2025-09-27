@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Banner } from '@/components/Banner';
 import { ChannelInfo } from '@/components/ChannelInfo';
 import { Navigation } from '@/components/Navigation';
-import { MusicPlayer } from '@/components/MusicPlayer';
+import { YouTubeMusicPlayer } from '@/components/YouTubeMusicPlayer';
 import { HomePage } from '@/components/pages/HomePage';
 import { VideosPage } from '@/components/pages/VideosPage';
 import { ShortsPage } from '@/components/pages/ShortsPage';
@@ -38,7 +38,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Floating Music Player */}
-      <MusicPlayer />
+      <YouTubeMusicPlayer />
       
       {/* Main Content */}
       <div className="container mx-auto px-4 py-6 max-w-7xl">
