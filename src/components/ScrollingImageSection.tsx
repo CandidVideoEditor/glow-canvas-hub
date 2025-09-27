@@ -18,37 +18,27 @@ export function ScrollingImageSection({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const scrollElement = scrollRef.current;
-    if (!scrollElement) return;
+    const el = scrollRef.current;
+    if (!el) return;
 
-    let animationId: number;
-    let scrollPosition = 0;
+    let rafId: number;
+    let progress = 0;
     const itemWidth = 160 + 4; // w-40 = 160px + 4px gap
-    const totalWidth = images.length * itemWidth;
+    const totalWidth = Math.max(1, images.length * itemWidth);
 
     const animate = () => {
-      if (direction === "left") {
-        scrollPosition += speed / 60; // Faster scrolling
-        if (scrollPosition >= totalWidth) {
-          scrollPosition = 0;
-        }
-      } else {
-        scrollPosition -= speed / 60; // Faster scrolling
-        if (scrollPosition <= -totalWidth) {
-          scrollPosition = 0;
-        }
-      }
-      
-      scrollElement.scrollLeft = scrollPosition;
-      animationId = requestAnimationFrame(animate);
+      progress += speed / 60;
+      if (progress >= totalWidth) progress = 0;
+
+      const offset = direction === "left" ? progress : (totalWidth - progress);
+      el.scrollLeft = offset;
+      rafId = requestAnimationFrame(animate);
     };
 
-    animationId = requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [speed, direction, images.length]);
 
